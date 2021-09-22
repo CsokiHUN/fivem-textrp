@@ -14,3 +14,15 @@ _Plain writing appears in the chat as speech._
 - /c [msg] -- Whisper player
 - /me [msg] -- Visible actions
 - /do [msg] -- Invisible actions, events
+
+### Exports
+
+##### Server Side
+
+```lua
+sendLocalMeMessage(player, message)
+```
+
+```lua
+sendLocalDoAction(player, message)
+```
