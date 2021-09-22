@@ -15,7 +15,7 @@ Visibility distances can be set in the **shared.lua** file.
 
 _Plain writing appears in the chat as speech._
 
-OOC toggle key: B _can be adjusted in the game settings_
+OOC toggle key: **B** _can be adjusted in the game settings_
 
 - /s [msg] -- Shout player
 - /c [msg] -- Whisper player
