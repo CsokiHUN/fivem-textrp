@@ -2,13 +2,20 @@
 
 Visibility distances can be set in the **shared.lua** file.
 
-### Screenshot
+### Screenshots
 
 [![](https://i.imgur.com/2Gk1BNF.png)](https://i.imgur.com/2Gk1BNF.png)
+[![](https://i.imgur.com/08mfFEN.png)](https://i.imgur.com/08mfFEN.png)
+
+### Dependencies
+
+- ESX Legacy
 
 ### Commands:
 
 _Plain writing appears in the chat as speech._
+
+OOC toggle key: B _can be adjusted in the game settings_
 
 - /s [msg] -- Shout player
 - /c [msg] -- Whisper player

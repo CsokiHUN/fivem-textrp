@@ -16,8 +16,7 @@ function sendToNearby(msg, coords, maxDistance, color)
 
 		TriggerClientEvent("chat:addMessage", targetPlayer, {
 			color = { color[1] or 255, color[2] or 255, color[3] or 255 },
-			args = msg,
-			template = template,
+			args = { msg },
 		})
 
 		::skip::
@@ -37,7 +36,7 @@ AddEventHandler("chatMessage", function(player, playerName, msg)
 
 	local sourcePed = GetPlayerPed(player)
 
-	sendToNearby({ xPlayer.getName() .. " mondja: ", msg }, GetEntityCoords(sourcePed), DISTANCES.speak)
+	sendToNearby(xPlayer.getName() .. " mondja: " .. msg, GetEntityCoords(sourcePed), DISTANCES.speak)
 
 	CancelEvent()
 end)
@@ -51,7 +50,7 @@ function sendLocalMeMessage(player, msg)
 	local sourcePed = GetPlayerPed(player)
 
 	sendToNearby(
-		{ "^*" .. "***" .. xPlayer.getName() .. " " .. msg },
+		"^*" .. "***" .. xPlayer.getName() .. " " .. msg,
 		GetEntityCoords(sourcePed),
 		DISTANCES.me,
 		{ 194, 162, 218 }
@@ -68,9 +67,9 @@ function sendLocalDoAction(player, msg)
 	local sourcePed = GetPlayerPed(player)
 
 	sendToNearby(
-		{ "^*" .. "* " .. msg .. " ((" .. xPlayer.getName() .. "))" },
+		"^*" .. "* " .. msg .. " ((" .. xPlayer.getName() .. "))",
 		GetEntityCoords(sourcePed),
-		DISTANCES.me,
+		DISTANCES["do"],
 		{ 255, 51, 102 }
 	)
 end
@@ -88,10 +87,14 @@ for cmd, data in pairs(COMMANDS) do
 		end
 
 		local msg = table.concat(args, " ")
+		if msg:len() <= 1 then
+			return
+		end
+
 		local sourcePed = GetPlayerPed(player)
 
 		sendToNearby(
-			{ xPlayer.getName() .. " " .. (data.extender or "") .. ": ", msg },
+			xPlayer.getName() .. " " .. (data.extender or "") .. ": " .. msg,
 			GetEntityCoords(sourcePed),
 			DISTANCES[data.distance]
 		)
@@ -101,11 +104,30 @@ end
 RegisterCommand("me", function(player, args, cmd)
 	local msg = table.concat(args, " ")
 
+	if msg:len() <= 1 then
+		return
+	end
+
 	sendLocalMeMessage(player, msg)
 end)
 
 RegisterCommand("do", function(player, args, cmd)
 	local msg = table.concat(args, " ")
 
+	if msg:len() <= 1 then
+		return
+	end
+
 	sendLocalDoAction(player, msg)
+end)
+
+RegisterNetEvent("sendOOCMessage", function(nearbyPlayers, message)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	if not xPlayer then
+		return
+	end
+
+	for _, targetPlayer in pairs(nearbyPlayers) do
+		TriggerClientEvent("receiveOOCMessage", targetPlayer, xPlayer.getName() .. ": (( " .. message .. " ))")
+	end
 end)

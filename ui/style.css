@@ -1,0 +1,56 @@
+#main {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(255, 255, 255, 0.9);
+  text-shadow: 1px 1px black;
+
+  position: absolute;
+  left: 1rem;
+  top: 40%;
+
+  width: 35vw;
+  height: 22vh;
+
+  padding: 0.5rem;
+}
+
+#main h5 {
+  font-weight: bold;
+}
+
+.messages {
+  position: absolute;
+  bottom: 0;
+  margin-left: 0.5rem;
+  max-height: 20vh;
+  overflow-y: hidden;
+}
+
+.inputBox {
+  display: flex;
+  position: absolute;
+  bottom: -2rem;
+
+  width: 16.5vw;
+  height: 1.3rem;
+  align-items: center;
+  margin: 0.2rem;
+  margin-left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+}
+
+#msgInput,
+#msgInput:focus {
+  margin-left: 0.5rem;
+  width: 90%;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#msgInput:focus {
+  color: white;
+  text-shadow: 1px 1px black;
+}
