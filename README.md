@@ -23,6 +23,11 @@ OOC toggle key: **B** _can be adjusted in the game settings_
 - /me [msg] -- Visible actions
 - /do [msg] -- Invisible actions, events
 
+-- try
+
+- /megpróbál [msg]
+- /megpróbálja [msg]
+
 ### Exports
 
 ##### Server Side
