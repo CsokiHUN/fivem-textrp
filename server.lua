@@ -131,3 +131,33 @@ RegisterNetEvent("sendOOCMessage", function(nearbyPlayers, message)
 		TriggerClientEvent("receiveOOCMessage", targetPlayer, xPlayer.getName() .. ": (( " .. message .. " ))")
 	end
 end)
+
+function tryCommand(player, args, cmd)
+	local msg = table.concat(args, " ")
+	if msg:len() <= 1 then
+		return
+	end
+
+	local xPlayer = ESX.GetPlayerFromId(player)
+	if not xPlayer then
+		return
+	end
+
+	local sourcePed = GetPlayerPed(player)
+	local middleText = "megpróbál"
+
+	if cmd == "megpróbálja" then
+		middleText = cmd
+	end
+
+	local color = { 100, 227, 30 }
+	local text = "***" .. xPlayer.getName() .. " " .. middleText .. " " .. msg .. " és sikerül neki."
+	if math.random(0, 1) ~= 1 then
+		color = { 227, 30, 30 }
+		text = "***" .. xPlayer.getName() .. " " .. middleText .. " " .. msg .. " de, sajnos nem sikerült neki."
+	end
+
+	sendToNearby(text, GetEntityCoords(sourcePed), DISTANCES.try, color)
+end
+RegisterCommand("megpróbál", tryCommand)
+RegisterCommand("megpróbálja", tryCommand)
