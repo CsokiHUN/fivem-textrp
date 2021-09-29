@@ -6,6 +6,7 @@ Visibility distances can be set in the **shared.lua** file.
 
 [![](https://i.imgur.com/2Gk1BNF.png)](https://i.imgur.com/2Gk1BNF.png)
 [![](https://i.imgur.com/08mfFEN.png)](https://i.imgur.com/08mfFEN.png)
+[![](https://i.imgur.com/ZUdnK1f.png)](https://i.imgur.com/ZUdnK1f.png)
 
 ### Dependencies
 
