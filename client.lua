@@ -21,6 +21,21 @@ RegisterCommand("togooc", function()
 	})
 end)
 
+CreateThread(function()
+	local oldVisible = false
+
+	while true do
+		local visible = not IsPauseMenuActive()
+		if oldVisible ~= visible then
+			SendNUIMessage({
+				visible = visible,
+			})
+			oldVisible = visible
+		end
+		Wait(400)
+	end
+end)
+
 function setOOCState(state)
 	inputState = state
 
@@ -39,6 +54,8 @@ RegisterKeyMapping("oocChat", "OOC Chat", "keyboard", "b")
 
 RegisterNUICallback("sendMessage", function(data)
 	setOOCState(false)
+
+	print(data.message, data.message:len())
 
 	if data.message:len() <= 1 then
 		return
