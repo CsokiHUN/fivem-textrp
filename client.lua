@@ -55,8 +55,6 @@ RegisterKeyMapping("oocChat", "OOC Chat", "keyboard", "b")
 RegisterNUICallback("sendMessage", function(data)
 	setOOCState(false)
 
-	print(data.message, data.message:len())
-
 	if data.message:len() <= 1 then
 		return
 	end
